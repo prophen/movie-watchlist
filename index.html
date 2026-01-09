@@ -23,9 +23,42 @@
         />
         <button type="submit" id="search-btn">Search</button>
       </form>
+
       <main id="movies-container">
-        <img src="images/film.png" alt="film icon" />
-        <p>Start exploring</p>
+        <ul id="pages-container" class="hidden"></ul>
+        <div class="start-exploring">
+          <img src="images/film.png" alt="film icon" />
+          <p>Start exploring</p>
+        </div>
+        <section class="movies-list">
+          <div class="movie">
+            <img
+              class="movie-poster"
+              src="images/blade-runner.png"
+              alt="blade runner movie poster"
+            />
+            <div class="movie-text">
+              <div class="movie-title">
+                <h2>Blade Runner</h2>
+                <img src="images/star.png" alt="star" class="star-icon" />
+                <span class="rating">8.1</span>
+              </div>
+              <div class="movie-info">
+                <span class="duration">117 min</span>
+                <span class="genre">Action, Drama, Sci-fi</span>
+                <div class="add-to-watchlist">
+                  <img src="images/plus.png" alt="plus icon" />
+                  <span>Watchlist</span>
+                </div>
+              </div>
+              <div class="plot">
+                A blade runner must pursue and terminate four replicants who
+                stole a ship in space, and have returned to Earth to find their
+                creator.
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
     <script src="index.js"></script>
