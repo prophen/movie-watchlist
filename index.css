@@ -1,0 +1,82 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #1c1c1c;
+  display: flex;
+  align-items: center;
+}
+.container {
+  width: 550px;
+  height: 779px;
+  margin: auto;
+}
+header {
+  background-image: url("images/posters.png");
+  height: 208px;
+  background-color: #0e0e0e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h1 {
+  margin: 0 0 0 42px;
+  font-weight: 800;
+  font-size: 2.67rem;
+}
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 0.875rem;
+  margin: 0 42px 0 0;
+  font-weight: bold;
+}
+form {
+  display: flex;
+  justify-content: center;
+  margin-top: -19px;
+  margin-bottom: 0;
+}
+input#search-input {
+  background-image: url("images/search.png");
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-position: 13px center;
+  padding: 9px 0px 9px 37px;
+  width: 342px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px 0 0 6px;
+  margin: 0;
+}
+button#search-btn {
+  width: 120px;
+  padding: 9px 0 9px 0;
+  border-radius: 0 6px 6px 0;
+  margin: 0 0 0 -4px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #374151;
+  font-family: inherit;
+}
+
+main {
+  background-color: white;
+  margin-top: -19px;
+  display: flex;
+  height: 571px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #dfdddd;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
