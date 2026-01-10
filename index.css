@@ -21,6 +21,9 @@ body {
 .hidden {
   display: none;
 }
+ul#pages-container.hidden {
+  display: none;
+}
 .container {
   width: 550px;
   height: 779px;

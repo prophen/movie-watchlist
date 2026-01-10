@@ -52,8 +52,9 @@ searchForm.addEventListener("submit", (e) => {
       startExploring.style.display = "none";
       notFound.classList.add("hidden");
       moviesContainer.style.display = "block";
-      renderPageLinks(numPages, 1);
-      getMoviesList(imdbIDs);
+      getMoviesList(imdbIDs).then(() => {
+        renderPageLinks(numPages, 1);
+      });
     });
 });
 
@@ -115,6 +116,7 @@ pagesContainer.addEventListener("click", (event) => {
   }
   const page = Number(button.dataset.page);
   moviesList.innerHTML = "";
+  pagesContainer.classList.add("hidden");
   pagesContainer.querySelectorAll(".page-btn").forEach((btn) => {
     btn.classList.toggle("is-active", btn === button);
     btn.disabled = btn === button;
@@ -130,20 +132,24 @@ pagesContainer.addEventListener("click", (event) => {
         return;
       }
       const imdbIDs = data.Search.map((movie) => movie.imdbID);
-      getMoviesList(imdbIDs);
+      getMoviesList(imdbIDs).then(() => {
+        pagesContainer.classList.remove("hidden");
+      });
     });
 });
 
 function getMoviesList(moviesIMBDArr) {
-  moviesIMBDArr.forEach((id) => {
-    fetch(
-      `http://www.omdbapi.com/?i=${id}&apikey=fa8c1227&type=movie&plot=full`
+  return Promise.all(
+    moviesIMBDArr.map((id) =>
+      fetch(
+        `http://www.omdbapi.com/?i=${id}&apikey=fa8c1227&type=movie&plot=full`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          renderMovie(data);
+        })
     )
-      .then((res) => res.json())
-      .then((data) => {
-        renderMovie(data);
-      });
-  });
+  );
 }
 
 function renderMovie(movieObj) {
