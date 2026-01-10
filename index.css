@@ -282,3 +282,67 @@ ul#pages-container {
 .read-more:hover {
   color: #111827;
 }
+
+@media (max-width: 600px) {
+  body {
+    align-items: stretch;
+  }
+
+  .container {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  header {
+    height: auto;
+    padding: 28px 20px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  nav a {
+    margin: 0;
+  }
+
+  form {
+    margin-top: -18px;
+  }
+
+  input#search-input {
+    width: 62vw;
+    max-width: 360px;
+  }
+
+  button#search-btn {
+    width: 28vw;
+    max-width: 140px;
+  }
+
+  main {
+    height: auto;
+    min-height: calc(100vh - 208px);
+  }
+
+  .movie {
+    width: 100%;
+    padding: 20px 16px;
+  }
+
+  .movie-text {
+    width: 100%;
+  }
+
+  .movie-info {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .movie-poster {
+    width: 90px;
+    height: 134px;
+  }
+}
