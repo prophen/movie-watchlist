@@ -1,19 +1,8 @@
-# Getting Started
-Install the dependencies and run the project
-```
-npm install
-npm start
-```
+# Movie Watchlist
+Solo project from APIs and Async JavaScript module on Scrimba's Fullstack Path.
 
-Head over to https://vitejs.dev/ to learn more about configuring vite
-## About Scrimba
+This app allows you to search for movies and add them to or remove them from a watchlist. 
 
-At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
-If we succeed with this, it will give anyone who wants to become a software developer a realistic shot at succeeding, regardless of where they live and the size of their wallets 🎉
-The Fullstack Developer Path aims to teach you everything you need to become a Junior Developer, or you could take a deep-dive with one of our advanced courses 🚀
+<img width="553" height="783" alt="movie search results for the matrix" src="https://github.com/user-attachments/assets/c1d75143-74ca-4308-9326-db4ea974ab23" />
 
-- [Our courses](https://scrimba.com/courses)
-- [The Frontend Career Path](https://scrimba.com/fullstack-path-c0fullstack)
-- [Become a Scrimba Pro member](https://scrimba.com/pricing)
-
-Happy Coding!
+<img width="553" height="783" alt="movie watchlist" src="https://github.com/user-attachments/assets/fa5d3283-a034-4c93-af92-70de85ee8978" />
