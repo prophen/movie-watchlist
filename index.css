@@ -95,6 +95,7 @@ input#search-input {
   border: 1px solid #d1d5db;
   border-radius: 6px 0 0 6px;
   margin: 0;
+  font-size: 1rem;
 }
 button#search-btn {
   width: 140px;
@@ -106,6 +107,7 @@ button#search-btn {
   color: #374151;
   font-family: inherit;
   cursor: pointer;
+  font-size: 1rem;
 }
 button#search-btn:hover,
 #search-form:focus-within button#search-btn {
@@ -221,7 +223,6 @@ ul#pages-container {
   display: flex;
 }
 .movies-list {
-  padding-top: 40px;
   width: 100%;
 }
 .movie {
@@ -316,7 +317,7 @@ ul#pages-container {
   }
 
   header {
-    height: 208px;
+    height: 150px;
   }
 
   .content {
@@ -360,6 +361,12 @@ ul#pages-container {
   .movie {
     width: 100%;
     padding: 20px 0;
+  }
+  .movies-list {
+    padding: 0;
+  }
+  main {
+    padding: 0;
   }
 
   .movie-text {
