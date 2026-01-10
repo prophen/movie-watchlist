@@ -80,6 +80,14 @@ button#search-btn {
   font-family: inherit;
   cursor: pointer;
 }
+button#search-btn:hover,
+#search-form:focus-within button#search-btn {
+  background-color: #e5e7eb;
+}
+button#search-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.35);
+}
 input#search-input:focus,
 button#search-btn:focus {
   outline: none;
@@ -95,12 +103,29 @@ button#search-btn:focus {
 #search-form:focus-within button#search-btn {
   background-color: #f3f4f6;
 }
+.not-found {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 321px;
+  margin: auto;
+  transform: translateY(-40px);
+}
+.not-found.hidden {
+  display: none;
+}
+.not-found p {
+  margin: 0;
+}
 #movies-container {
   margin-top: -17px;
 }
 #watchlist-container {
   justify-content: flex-start;
-  padding-top: 28px;
+  padding-top: 181px;
 }
 main {
   background-color: white;
@@ -109,17 +134,17 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #dfdddd;
+  color: #6b7280;
   font-weight: bold;
   font-size: 1.125rem;
   overflow: auto;
+  position: relative;
 }
 .start-exploring {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #dfdddd;
   font-weight: bold;
   font-size: 1.125rem;
 }
@@ -181,6 +206,7 @@ ul#pages-container {
 .movie-poster {
   width: 99px;
   height: 147.41px;
+  border-radius: 2.33px;
 }
 .star-icon {
   width: 11px;
@@ -232,4 +258,24 @@ ul#pages-container {
   color: #6b7280;
   font-weight: 400;
   font-size: 0.875rem;
+}
+.plot-text {
+  margin: 0;
+  display: inline;
+}
+.read-more {
+  display: inline;
+  font-family: inherit;
+  margin-left: 6px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #272727;
+  font-size: 0.75rem;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+}
+.read-more:hover {
+  color: #111827;
 }

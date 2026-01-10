@@ -4,12 +4,22 @@ const pagesContainer = document.getElementById("pages-container");
 const startExploring = document.querySelector(".start-exploring");
 const moviesContainer = document.getElementById("movies-container");
 const moviesList = document.querySelector(".movies-list");
+const notFound = document.querySelector(".not-found");
 
 let currentQuery = "";
 const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+const MAX_PLOT_LENGTH = 180;
 
 function isInWatchlist(imdbID) {
   return watchlist.some((movie) => movie.imdbID === imdbID);
+}
+
+function getPlotPreview(plotText) {
+  const plot = plotText && plotText !== "N/A" ? plotText.trim() : "N/A";
+  if (plot === "N/A" || plot.length <= MAX_PLOT_LENGTH) {
+    return { text: plot, truncated: false };
+  }
+  return { text: `${plot.slice(0, MAX_PLOT_LENGTH)}…`, truncated: true };
 }
 
 searchForm.addEventListener("submit", (e) => {
@@ -17,6 +27,7 @@ searchForm.addEventListener("submit", (e) => {
   moviesList.innerHTML = "";
   pagesContainer.innerHTML = "";
   pagesContainer.classList.add("hidden");
+  notFound.classList.add("hidden");
   currentQuery = searchInput.value.trim();
   if (!currentQuery) {
     return;
@@ -29,8 +40,9 @@ searchForm.addEventListener("submit", (e) => {
     .then((res) => res.json())
     .then((data) => {
       if (data.Response === "False") {
-        startExploring.style.display = "flex";
-        moviesContainer.style.display = "flex";
+        startExploring.style.display = "none";
+        notFound.classList.remove("hidden");
+        moviesContainer.style.display = "block";
         return;
       }
       const imdbIDs = data.Search.map((movie) => movie.imdbID);
@@ -38,6 +50,7 @@ searchForm.addEventListener("submit", (e) => {
         data.totalResults > 10 ? Math.ceil(data.totalResults / 10) : 1;
 
       startExploring.style.display = "none";
+      notFound.classList.add("hidden");
       moviesContainer.style.display = "block";
       renderPageLinks(numPages, 1);
       getMoviesList(imdbIDs);
@@ -45,6 +58,18 @@ searchForm.addEventListener("submit", (e) => {
 });
 
 moviesList.addEventListener("click", (event) => {
+  const readMoreButton = event.target.closest(".read-more");
+  if (readMoreButton) {
+    const movieCard = readMoreButton.closest(".movie");
+    const plotEl = movieCard.querySelector(".plot-text");
+    const fullPlot = decodeURIComponent(plotEl.dataset.full || "");
+    const shortPlot = decodeURIComponent(plotEl.dataset.short || "");
+    const isExpanded = readMoreButton.dataset.expanded === "true";
+    plotEl.textContent = isExpanded ? shortPlot : fullPlot;
+    readMoreButton.dataset.expanded = isExpanded ? "false" : "true";
+    readMoreButton.textContent = isExpanded ? "Read more" : "Show less";
+    return;
+  }
   const button = event.target.closest(".add-to-watchlist");
   if (!button) {
     return;
@@ -65,8 +90,6 @@ moviesList.addEventListener("click", (event) => {
   watchlist.push(movie);
   localStorage.setItem("watchlist", JSON.stringify(watchlist));
   button.disabled = true;
-  console.log(watchlist);
-  console.log("clicked");
 });
 
 function renderPageLinks(pages, activePage = 1) {
@@ -76,7 +99,11 @@ function renderPageLinks(pages, activePage = 1) {
   pagesContainer.classList.remove("hidden");
   for (let i = 1; i <= pages; i++) {
     pagesContainer.innerHTML += `
-    <li><button class="page-btn${i === activePage ? " is-active" : ""}" id="page-${i}" data-page="${i}" ${i === activePage ? "disabled" : ""}>${i}</button></li>
+    <li><button class="page-btn${
+      i === activePage ? " is-active" : ""
+    }" id="page-${i}" data-page="${i}" ${
+      i === activePage ? "disabled" : ""
+    }>${i}</button></li>
     `;
   }
 }
@@ -114,7 +141,6 @@ function getMoviesList(moviesIMBDArr) {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         renderMovie(data);
       });
   });
@@ -126,6 +152,9 @@ function renderMovie(movieObj) {
     movieObj.Poster && movieObj.Poster !== "N/A"
       ? movieObj.Poster
       : "images/placeholder.svg";
+  const plotPreview = getPlotPreview(movieObj.Plot || "");
+  const fullPlot = encodeURIComponent(movieObj.Plot || "");
+  const shortPlot = encodeURIComponent(plotPreview.text);
   moviesList.innerHTML += `
     <div class="movie">
       <img
@@ -159,7 +188,14 @@ function renderMovie(movieObj) {
           </button>
         </div>
         <div class="plot">
-          ${movieObj.Plot}
+          <p class="plot-text" data-full="${fullPlot}" data-short="${shortPlot}">${
+    plotPreview.text
+  }</p>
+          ${
+            plotPreview.truncated
+              ? `<button class="read-more" type="button" data-expanded="false">Read more</button>`
+              : ""
+          }
         </div>
       </div>
     </div>
