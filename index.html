@@ -13,31 +13,35 @@
   <body>
     <div class="container">
       <header>
-        <h1>Find your film</h1>
-        <nav><a href="watchlist.html">My Watchlist</a></nav>
+        <div class="content header-content">
+          <h1>Find your film</h1>
+          <nav><a href="watchlist.html">My Watchlist</a></nav>
+        </div>
       </header>
-      <form id="search-form">
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search for a movie..."
-        />
-        <button type="submit" id="search-btn">Search</button>
-      </form>
+      <div class="content main-content">
+        <form id="search-form">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search for a movie..."
+          />
+          <button type="submit" id="search-btn">Search</button>
+        </form>
 
-      <main id="movies-container">
-        <div class="start-exploring">
-          <img src="images/film.png" alt="film icon" />
-          <p>Start exploring</p>
-        </div>
-        <div class="not-found hidden">
-          <p>
-            Unable to find what you're looking for. Please try another search.
-          </p>
-        </div>
-        <section class="movies-list"></section>
-        <ul id="pages-container" class="hidden"></ul>
-      </main>
+        <main id="movies-container">
+          <div class="start-exploring">
+            <img src="images/film.png" alt="film icon" />
+            <p>Start exploring</p>
+          </div>
+          <div class="not-found hidden">
+            <p>
+              Unable to find what you're looking for. Please try another search.
+            </p>
+          </div>
+          <section class="movies-list"></section>
+          <ul id="pages-container" class="hidden"></ul>
+        </main>
+      </div>
     </div>
     <script src="index.js"></script>
   </body>
