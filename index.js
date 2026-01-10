@@ -33,7 +33,7 @@ searchForm.addEventListener("submit", (e) => {
     return;
   }
   fetch(
-    `http://www.omdbapi.com/?s=${encodeURIComponent(
+    `https://www.omdbapi.com/?s=${encodeURIComponent(
       currentQuery
     )}&apikey=fa8c1227&type=movie&page=1`
   )
@@ -122,7 +122,7 @@ pagesContainer.addEventListener("click", (event) => {
     btn.disabled = btn === button;
   });
   fetch(
-    `http://www.omdbapi.com/?s=${encodeURIComponent(
+    `https://www.omdbapi.com/?s=${encodeURIComponent(
       currentQuery
     )}&apikey=fa8c1227&type=movie&page=${page}`
   )
@@ -142,7 +142,7 @@ function getMoviesList(moviesIMBDArr) {
   return Promise.all(
     moviesIMBDArr.map((id) =>
       fetch(
-        `http://www.omdbapi.com/?i=${id}&apikey=fa8c1227&type=movie&plot=full`
+        `https://www.omdbapi.com/?i=${id}&apikey=fa8c1227&type=movie&plot=full`
       )
         .then((res) => res.json())
         .then((data) => {
